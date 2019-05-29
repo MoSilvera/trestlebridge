@@ -51,6 +51,8 @@ namespace TrestlebridgeEntity.Controllers
 
             var facility = await _context.Facilities
                 .Include(f => f.Type)
+                .Include(f => f.Animals)
+                .ThenInclude(at => at.AnimalType)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (facility == null)
             {
